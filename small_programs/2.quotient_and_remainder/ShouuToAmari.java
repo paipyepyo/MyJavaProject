@@ -24,7 +24,7 @@ public class ShouuToAmari {
       }
     } while (!stop);
     println("\nご入力ありがとうございました。");
-    println("それぞれの商と余りは下記になります。\n");
+    println("それぞれの商と余りは下記となります。\n");
 
     int count = 0;
     for (Num num : list) {
