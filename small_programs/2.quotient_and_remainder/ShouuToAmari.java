@@ -3,7 +3,7 @@ import static util.Printer.print;
 import static util.Printer.println;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+ 
 import util.InputControl;
 
 public class ShouuToAmari {
