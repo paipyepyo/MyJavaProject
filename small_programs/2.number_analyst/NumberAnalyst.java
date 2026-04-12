@@ -3,15 +3,15 @@ import static util.Printer.print;
 import static util.Printer.println;
 import java.util.ArrayList;
 import java.util.Scanner;
- 
+
 import util.InputControl;
 
-public class ShouuToAmari {
+public class NumberAnalyst {
 
   public static void main(String... args) {
 
     println("　\n入力をやめたい際は直前の数字と同じ入力してください");
-    println("では商と余りを知りたい数字を一つずつ入力してください\n");
+    println("では、統計を分析するために、数字を一つずつ入力してください。\n");
 
     ArrayList<Num> list = new ArrayList<>();
     boolean stop = false;
@@ -27,7 +27,7 @@ public class ShouuToAmari {
 
     } while (!stop);
     println("\nご入力ありがとうございました。");
-    println("それぞれの商と余りは下記となります。\n");
+    println("それぞれの数字の統計結果は下記のとおりです。\n");
 
     // 2.表示処理
     int count = 0;
@@ -46,11 +46,15 @@ class Num {
   final private double number;
   final private int quotient;
   final private int remainder;
+  final private String sign;
+  final private String evenOrOdd;
 
   Num(double number) {
     this.number = number;
     this.quotient = Double.valueOf(this.number).intValue();// 商はオブジェクト作成時に決める
     this.remainder = findTheRemainder(this);
+    this.sign = findTheSign(this.number);
+    this.evenOrOdd = findEvenOrOdd(this.quotient);
   }
 
   public double getNumber() {
@@ -59,7 +63,8 @@ class Num {
 
   @Override
   public String toString() {
-    return "数字：" + this.number + ",  商：" + this.quotient + ",   余り：" + this.remainder;
+    return "数字：" + this.number + ",商：" + this.quotient + ",余り：" + this.remainder + ",符号：" + this.sign
+        + ",偶数か奇数：" + this.evenOrOdd;
   }
 
   // 数字を文字列に変換し、小数点を探し、余りを出す
@@ -74,5 +79,26 @@ class Num {
     }
     s = s.substring(decimalPointIndex + 1, s.length());
     return Integer.valueOf(s).intValue();
+  }
+
+  // 符号を探すメソッド
+  private String findTheSign(double number) {
+    if (number > 0.0)
+      return "正";
+    if (number < 0.0)
+      return "負";
+    if (number == 0.0)
+      return "ゼロ";
+    return null;
+  }
+
+  // 奇数か偶数かを商を2で割って決めるメソッド
+  // 奇数か偶数かは整数の部分だけでで決められため
+  private String findEvenOrOdd(double number) {
+    if (number % 2 == 0)
+      return "偶数";
+    else
+      return "奇数";
+
   }
 }
